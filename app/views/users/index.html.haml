@@ -1,0 +1,46 @@
+#block-tables.block
+  .content
+    %h2.title Users
+    .inner
+      %table.table
+        %thead
+          %tr
+            %th
+            %th Login
+            %th Nome
+            %th E-mail
+            %th Logins
+            %th{ :colspan => 2} Ações
+        %tbody
+          - for user in @users
+            %tr
+              %td= "X" if user.admin?
+              %td= link_to h(user.login), user
+              %td= h user.name
+              %td= h user.email
+              %td= user.login_count
+              %td= edit_link user
+              %td= destroy_link user
+      .actions-bar
+        .pagination
+        .clear
+
+  = will_paginate @users
+
+- content_for :sidebar do
+  %h3 Menu
+  .content
+    %div.block
+      .content
+        %p #{@users.length} User(s).
+        %p
+          = image_tag "plus.png"
+          = link_to 'Novo usuário', new_user_path, :class => "icon new"
+
+    .block
+      .sidebar-block
+        %h4 Stats
+        %p
+          = count_as_text(User.logged_in.count, "Only you...", "%i users", "Já peguei teu IP fdp :)")
+        - for user in User.logged_in
+          %p= link_to h("#{user.login}(#{user.name})"), user

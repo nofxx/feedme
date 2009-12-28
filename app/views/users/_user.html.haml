@@ -1,0 +1,21 @@
+- form_for @user, :html => {:class => "form"} do |f|
+  = f.error_messages
+  %span.wrap
+    = f.label :login
+    = f.text_field :login
+    %small Use your github username.
+  %span.wrap
+    = f.label :email
+    = f.text_field :email
+  %span.wrap
+    = f.label :password
+    = f.password_field :password, :autocomplete => :off
+  %span.wrap
+    = f.label :confirm
+    = f.password_field :password_confirmation, :size => 20
+    -# - f.inputs :name => "Contatos", :id => "contacts" do
+    -#   = f.render_associated_form @user.contacts, :partial => "contacts/contact"
+    -#   = f.add_associated_link "+ Novo contato", :contacts, :partial => "contacts/contact"
+
+  .clear
+  = save_or_cancel(f)
