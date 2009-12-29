@@ -1,14 +1,13 @@
 #
-# Code Solo 2009
+# FeedMe 2009
 #
 class User < ActiveRecord::Base
   has_many :binds, :dependent => :destroy
-  has_many :projects, :through => :binds
-  has_many :contacts, :as => :contactable, :dependent => :destroy
+  has_many :feeds, :through => :binds
+  has_many :contacts, :dependent => :destroy
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
-  has_many :pubs, :dependent => :destroy
-  has_many :todos, :dependent => :nullify
+  # has_many :pubs, :dependent => :destroy
   # has_many :friendships
   # has_many :friends, :through => :friendships #, :class_name => "User"
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
 
